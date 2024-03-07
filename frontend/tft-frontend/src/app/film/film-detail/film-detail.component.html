@@ -1,0 +1,39 @@
+<span class="p-float-label">
+    <input type="text" pInputText [(ngModel)]="film.Naslov" />
+    <label for="number-input">Naslov</label>
+</span>
+
+<span class="p-float-label">
+    <textarea rows="5" cols="30" pInputTextarea [autoResize]="false" [(ngModel)]="film.Opis"></textarea>
+    <label for="number-input">Opis</label>
+</span>
+
+<span class="p-float-label">
+    <p-inputNumber inputId="integeronly" [(ngModel)]="film.Trajanje"> </p-inputNumber>
+    <label for="number-input">Trajanje (min)</label>
+</span>
+
+<span class="p-float-label">
+    <p-inputNumber [(ngModel)]="film.Budzet" inputId="minmaxfraction" mode="decimal" [minFractionDigits]="2" [maxFractionDigits]="2"> </p-inputNumber>
+    <label for="number-input">Budžet</label>
+</span>
+
+<span class="p-float-label">
+    <p-calendar [(ngModel)]="film.PocetakSnimanja"></p-calendar>
+    <label for="number-input">Početak snimanja</label>
+</span>
+
+<span class="p-float-label">
+    <p-calendar [(ngModel)]="film.KrajSnimanja"></p-calendar>
+    <label for="number-input">Kraj snimanja</label>
+</span>
+
+<span class="p-float-label">
+    <p-multiSelect inputId="float-label" [options]="zanrovi" [(ngModel)]="film.Zanrovi" optionLabel="Naziv"></p-multiSelect>
+    <label for="float-label">Žanrovi</label>
+</span>
+
+<span class="p-float-label">
+    <p-dropdown inputId="float-label" [options]="direktori" [(ngModel)]="film.Direktor" optionLabel="ImeIPrezime"></p-dropdown>
+    <label for="float-label">Direktor</label>
+</span>

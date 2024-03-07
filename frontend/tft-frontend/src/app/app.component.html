@@ -1,0 +1,4 @@
+<app-login *ngIf="!authService.isAuthenticated"></app-login>
+<app-home-page *ngIf="authService.isAuthenticated"></app-home-page>
+
+<router-outlet />

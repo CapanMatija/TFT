@@ -1,0 +1,80 @@
+<p-toolbar>
+    <button class="p-button" (click)="onEditUser()">Dodaj</button>
+</p-toolbar>
+<p-table
+    [value]="users"
+    [paginator]="true"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 20]"
+>
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:20%">Ime</th>
+            <th style="width:20%">Prezime</th>
+            <th style="width:20%">Email</th>
+            <th style="width:20%">Uloga</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{ user.Ime }}</td>
+            <td>{{ user.Prezime }}</td>
+            <td>{{ user.Email }}</td>
+            <td>{{ user.Uloga }}</td>
+            <td>
+                <div class="flex align-items-center justify-content-center gap-2">
+                    <button pButton pRipple type="button" (click)="onEditUser(user.Id)" class="p-button-rounded p-button-text">Uredi</button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="paginatorleft">
+        <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+    </ng-template>
+    <ng-template pTemplate="paginatorright">
+        <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-table>
+
+<p-dialog header="Header" [(visible)]="isEdit" [modal]="true" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <ng-template pTemplate="header">
+        <div class="inline-flex align-items-center justify-content-center gap-2">
+            <span class="font-bold white-space-nowrap">Korisnik</span>
+        </div>
+    </ng-template>
+    <ng-container *ngIf="isEdit">
+        <span class="p-float-label">
+            <input type="text" pInputText [(ngModel)]="userDetail.Ime" />
+            <label for="number-input">Ime</label>
+        </span>
+        <span class="p-float-label">
+            <input type="text" pInputText [(ngModel)]="userDetail.Prezime" />
+            <label for="number-input">Prezime</label>
+        </span>
+        <span class="p-float-label">
+            <input type="text" pInputText [(ngModel)]="userDetail.Email" />
+            <label for="number-input">Email</label>
+        </span>
+        <span class="p-float-label">
+            <input type="text" pInputText [(ngModel)]="userDetail.Username" />
+            <label for="number-input">Username</label>
+        </span>
+        <span class="p-float-label">
+            <input type="text" pInputText [(ngModel)]="userDetail.InitPassword" />
+            <label for="number-input">Inicijalna lozinka</label>
+        </span>
+        <span class="p-float-label">
+            <p-dropdown inputId="float-label" [options]="uloge" [(ngModel)]="userDetail.Uloga" optionLabel="Naziv"></p-dropdown>
+            <label for="float-label">Uloga</label>
+        </span>
+    </ng-container>
+    
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="onSubmit()" label="Spremi" pAutoFocus [autofocus]="true"></p-button>
+        <p-button icon="pi pi-check" (click)="onEditDialogClose()" label="Zatvori" pAutoFocus [autofocus]="true"></p-button>
+    </ng-template>
+</p-dialog>
